@@ -5,4 +5,4 @@ FNT Command <- nicht, ist eher eine Projektarbeit
 -> Merge the two topics
 
 yEd <- Graphic Editor for WAB
-
+-> editing all graphics amd saving them into this repos.
