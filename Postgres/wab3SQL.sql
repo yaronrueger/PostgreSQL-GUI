@@ -28,16 +28,16 @@ CREATE TABLE tkey_usbHub(
 );
 
 CREATE TABLE tkey_server(
-        id_ipAdress varChar(50),
+        id_ipAdress varChar(50) PRIMARY KEY,
         ds_labOrTest varChar(50)
 );
 
 CREATE TABLE tkey_rack(
-        id_nummer varChar(50)
+        id_nummer varChar(50) PRIMARY KEY
 );
 
 CREATE TABLE tkey_location(
-        id_city varChar(50),
+        id_city varChar(50) PRIMARY KEY,
         ds_country varChar(50),
         ds_building varChar(50)
 );
