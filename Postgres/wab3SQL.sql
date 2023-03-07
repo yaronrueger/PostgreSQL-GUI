@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS tkey_device;
 DROP TABLE IF EXISTS tkey_schirmbox;
+DROP TABLE IF EXISTS tkey_device;
 DROP TABLE IF EXISTS tkey_usbHub;
 DROP TABLE IF EXISTS tkey_server;
 DROP TABLE IF EXISTS tkey_rack;
@@ -18,7 +18,9 @@ CREATE TABLE tkey_device(
 
 CREATE TABLE tkey_schirmbox(
         id_name varChar(50) PRIMARY KEY,
-        ds_btMac varChar(50)
+        ds_btMac varChar(50),
+        fi_androidID varChar(50),
+        FOREIGN KEY (fi_androidID) REFERENCES tkey_device(id_androidID)
 );
 
 
