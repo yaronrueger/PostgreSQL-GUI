@@ -1,7 +1,8 @@
 DROP TABLE IF EXISTS tkey_device;
+DROP TABLE IF EXISTS tkey_heRack;
 DROP TABLE IF EXISTS tkey_schirmbox;
-DROP TABLE IF EXISTS tkey_usbHub;
 DROP TABLE IF EXISTS tkey_server;
+DROP TABLE IF EXISTS tkey_usbHub;
 DROP TABLE IF EXISTS tkey_rack;
 DROP TABLE IF EXISTS tkey_location;
 
@@ -13,30 +14,34 @@ CREATE TABLE tkey_location(
 
 CREATE TABLE tkey_rack(
         id_number varChar(50) PRIMARY KEY,
-        fi_location varChar(50),
-        FOREIGN KEY (fi_location) REFERENCES tkey_location(id_city)
-);
-
-
-CREATE TABLE tkey_server(
-        id_ipAddress varChar(50) PRIMARY KEY,
-        ds_labOrTest varChar(50),
-        fi_rackNumber varChar(50),
-        FOREIGN KEY (fi_rackNumber) REFERENCES tkey_rack(id_number)
+        fi_location varChar(50) REFERENCES tkey_location(id_city)
 );
 
 CREATE TABLE tkey_usbHub(
         id_id varChar(50) PRIMARY KEY,
         ds_btMac varChar(50),
-        fi_rackNumber varChar(50),
-        FOREIGN KEY (fi_rackNumber) REFERENCES tkey_rack(id_number)
+        fi_rackNumber varChar(50) REFERENCES tkey_rack(id_number)
+);
+        
+CREATE TABLE tkey_server(
+        id_ipAddress varChar(50) PRIMARY KEY,
+        ds_name text,
+        ds_labOrTest varChar(50),
+        fi_rackNumber varChar(50) REFERENCES tkey_rack(id_number)
 );
 
 CREATE TABLE tkey_schirmbox(
-        id_schirmboxName varChar(50) PRIMARY KEY,
+        id_schirmboxName text PRIMARY KEY,
         ds_btMac varChar(50),
-        fi_rackNumber varChar(50),
-        FOREIGN KEY (fi_rackNumber) REFERENCES tkey_rack(id_number)
+        fi_rackNumber varChar(50) REFERENCES tkey_rack(id_number)
+);
+
+CREATE TABLE tkey_heRack(
+        id_id SERIAL PRIMARY KEY,
+        dn_he int,
+        fi_ipAddress varChar(50) REFERENCES tkey_server(id_ipAddress),
+        fi_schirmboxName varChar(50) REFERENCES tkey_schirmbox(id_schirmboxName),
+        fi_rack varChar(50) REFERENCES tkey_rack(id_number)
 );
 
 CREATE TABLE tkey_device(
@@ -47,8 +52,6 @@ CREATE TABLE tkey_device(
         ds_btMac varChar(50),
         dy_batteryProj boolean,
         dn_usbPort int,
-        fi_schirmboxName varChar(50),
-        fi_ipAddress varChar(50),
-        FOREIGN KEY (fi_ipAddress) REFERENCES tkey_server(id_ipAddress),
-        FOREIGN KEY (fi_schirmboxName) REFERENCES tkey_schirmbox(id_schirmboxName)
+        fi_ipAddress varChar(50) REFERENCES tkey_server(id_ipAddress),
+        fi_schirmboxName text REFERENCES tkey_schirmbox(id_schirmboxName)
 );
