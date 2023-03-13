@@ -55,3 +55,11 @@ CREATE TABLE tkey_device(
         fi_ipAddress varChar(50) REFERENCES tkey_server(id_ipAddress),
         fi_schirmboxName text REFERENCES tkey_schirmbox(id_schirmboxName)
 );
+
+INSERT INTO tkey_location VALUES ('Nuernberg', 'Germany', 'GeorgElserStraße2');
+INSERT INTO tkey_rack VALUES ('1', 'Nuernberg');
+INSERT INTO tkey_usbHub VALUES ('101213', '2fa3d', '1');
+INSERT INTO tkey_server VALUES ('10.112.125.01', 'my-nyge-sm-1', 'lab', '1');
+INSERT INTO tkey_schirmbox VALUES ('schirmbox1', '12fa34b', '1');
+INSERT INTO tkey_heRack VALUES (1, 0, '10.112.125.01', 'schirmbox1', '1');
+INSERT INTO tkey_device VALUES ('12hf1', 'Samsung21', '121212', '22323', 'btmac1', true, 1, '10.112.125.01', 'schirmbox1');

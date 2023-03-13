@@ -13,9 +13,26 @@ public class App {
             // Create a connection to the database
             Connection conn = DriverManager.getConnection(url, user, password);
 
-            // Do something with the connection (e.g. query the database)
-            System.out.println("Connected to database ");
 
+            System.out.println("Connected to database ");
+            // Create a statement
+            Statement stmt = conn.createStatement();
+
+            // Execute a query and get the result set
+            ResultSet rs = stmt.executeQuery("SELECT * FROM tkey_location");
+
+            //Loop through the result set and print out the data
+            while (rs.next()) {
+                String city = rs.getString("id_city");
+                String country = rs.getString("ds_country");
+                String building = rs.getString("ds_building");
+                System.out.printf("City: %s, country: %s, building: %s\n", city, country, building);
+            }
+            
+
+            // Close the result set, statement, and connection
+            rs.close();
+            stmt.close();
             
             // Close the connection
             conn.close();
