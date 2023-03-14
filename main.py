@@ -8,6 +8,7 @@ cur = conn.cursor()
 # Create the main window
 root = tk.Tk()
 root.title("DB_WAB_3")
+root.geometry("1000x600")
 root.configure(bg='#242424')
 
 # Create a label for the headline
