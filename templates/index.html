@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>My Database App</title>
-  </head>
-  <body>
-    <h1>Welcome to my database app</h1>
-    <p>Replace this with your own content.</p>
-  </body>
+<head>
+    <title>Search Results</title>
+</head>
+<body>
+    {% if results %}
+        <h1>Search Results:</h1>
+        <ul>
+            {% for result in results %}
+                <li>{{ result.type }}: {{ result.id }} - {{ result.country }}, {{ result.building }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h1>No results found.</h1>
+    {% endif %}
+</body>
 </html>
