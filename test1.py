@@ -10,7 +10,7 @@ _maintainer_ = "Yaron Rueger"
 #   [] change button to add the table not replace it
 #   [] change size of table
 #   [] darkmode
-#   [] ...
+#   [] scrollbar for window
 #   [] name of the table
 ########################################################################
 import tkinter as tk
@@ -29,7 +29,7 @@ window.config(padx=50, pady=50)
 window.config(bg="#2d2d2d")
 
 
-#window.geometry("1000x500")
+window.geometry("1000x500")
 #scrollbar = Scrollbar(window)
 #scrollbar.pack( side = RIGHT, fill = Y )
 
@@ -63,27 +63,28 @@ def get_oneTable(name):
     newdata = []
     for i in data:
         newdata.append(list(i))
-    sheets.append(tksheet.Sheet(window, data=newdata))
+    sheets.append(tksheet.Sheet(window, data=newdata,enable_edit_cell_auto_resize = True, auto_resize_default_row_index = True))
     sheets[-1].enable_bindings(("single_select", "row_select", "column_width_resize","arrowkeys","right_click_popup_menu","rc_select", "rc_insert_row","rc_delete_row", "copy", "cut", "paste", "delete","undo","edit_cell"))
-    sheets[-1].grid(row=6,column=0, rowspan=20, columnspan=9, sticky="nsew")
+    sheets[-1].grid(row=7,column=0, rowspan=20, columnspan=9, sticky="nsew")
+    sheets[-1].headers(["Name", "Type", "Value", "Unit", "Min", "Max", "Default"])
 
 def delete_tables():
     for i in reversed(sheets):
         i.grid_forget()
         sheets.remove(i)
 
-button1 = tk.Button(text="show all", bg="#0277BD", fg="white", font=("Arial", 12), command=get_tables)
-button1.grid(row=0,column=0, sticky= "w")
+button1 = tk.Button(text="show all", bg="#262626", fg="white", font=("Arial", 12), command=get_tables)
+button1.grid(row=0,column=0, sticky= "nsew")
 
-button2 = tk.Button(text="show nothing", bg="#0277BD", fg="white", font=("Arial", 12), command=delete_tables)
-button2.grid(row=0,column=1, sticky= "w")
+button2 = tk.Button(text="show nothing", bg="#262626", fg="white", font=("Arial", 12), command=delete_tables)
+button2.grid(row=0,column=1, sticky= "nsew")
 
 for i in tables:
-    button = tk.Button(text=i, bg="#0277BD", fg="white", font=("Arial", 12), command=lambda n=i: get_oneTable(n))
+    button = tk.Button(text=i, bg="#262626", fg="white", font=("Arial", 12), command=lambda n=i: get_oneTable(n))
     buttons.append(button)
 
 for i in range(len(buttons)):
-    buttons[i].grid(row=math.floor(i/2)+2,column=i%2, sticky= "w")
+    buttons[i].grid(row=math.floor(i/2)+2,column=i%2, sticky= "nsew")
 window.mainloop()
 
 def save_data():
