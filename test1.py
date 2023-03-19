@@ -10,8 +10,12 @@ _maintainer_ = "Yaron Rueger"
 #   [x] get the tableNames from the database
 #   [x] name of the table
 #   [] change button to add the table not replace it
+#   [] get all tables function:
+#       -->[] labels for all tables
+#       -->[] columnnames for all tables
+#       -->[] changing available and changing all primary keys and foreign keys
 #   [x] change size of table
-#       -->[]place them one in a row
+#       -->[x]place them one in a row
 #   [x] darkmode
 #   [x] get the columnsnames from the database
 #   [] scrollbar for window
@@ -56,21 +60,21 @@ sheets = []
 buttons = []
 tkeyName = "null"
 
-#######################get_allTables()#########################################
-#def get_tables():
-#    delete_tables()
-#    j = 0
-#    for i in tables:
-#        cur.execute("SELECT * FROM " + i)
-#        data = cur.fetchall()
-#        newdata = []
-#        for i in data:
-#            newdata.append(list(i))
-#        sheets.append(tksheet.Sheet(window, data=newdata))
-#        sheets[j].grid(row=j+6, column=0, rowspan=20, columnspan=9, sticky="nsew")
-#        sheets[j].enable_bindings(("single_select", "row_select", "column_width_resize","arrowkeys","right_click_popup_menu","rc_select", "rc_insert_row","rc_delete_row", "copy", "cut", "paste", "delete","undo","edit_cell"))
-#        sheets[j].extra_bindings([("end_edit_cell", cell_edited)])
-#        j+=1
+
+def get_tables():
+    delete_tables()
+    for i in tables:
+        cur.execute("SELECT * FROM " + i)
+        data = cur.fetchall()
+        newdata = []
+        for i in data:
+            newdata.append(list(i))
+        sheets.append(tksheet.Sheet(window, data=newdata))
+        sheets[-1].enable_bindings(("single_select", "row_select", "column_width_resize","arrowkeys","right_click_popup_menu","rc_select", "rc_insert_row","rc_delete_row", "copy", "cut", "paste", "delete","undo","edit_cell"))
+        #sheets[j].extra_bindings([("end_edit_cell", cell_edited)])
+
+    for i in range(len(sheets)):
+        sheets[i].grid(row=i+7, column=0, columnspan=9, sticky="nsew")
 
 #######################cell_edited()#########################################
 #def cell_edited(event):
@@ -79,15 +83,15 @@ tkeyName = "null"
 #    column = event[1]
 
 def cell_editedOne(event):
-    print(event)
+    #print(event)
     changedData = event[3]
-    print(changedData)
+    #print(changedData)
     columnsName = sheets[-1].get_sheet_data(return_copy = False, get_header = True, get_index = False)[event[1]]
-    print(columnsName)
+    #print(columnsName)
     idName = sheets[-1].get_sheet_data(return_copy = False, get_header = True, get_index = False)[0]
-    print(idName)
+   # print(idName)
     idWert = sheets[-1].get_cell_data(event[0], 0, return_copy = True)
-    print(idWert)
+    #print(idWert)
     cur.execute("UPDATE " + tkeyName + " SET " + columnsName + " = " + "'"+changedData +"'"+ " WHERE " + idName + " = " + "'"+idWert+"'")
 
 label1= None
@@ -124,10 +128,13 @@ def delete_tables():
     for i in reversed(sheets):
         i.grid_forget()
         sheets.remove(i)
-        label1.grid_forget()
+        if(label1 == None):
+            label1 = None
+        else:    
+            label1.grid_forget()
 
-#button1 = tk.Button(text="show all", bg="#262626", fg="white", font=("Arial", 12), command=get_tables)
-#button1.grid(row=0,column=0, sticky= "nsew")
+button1 = tk.Button(text="show all", bg="#262626", fg="white", font=("Arial", 12), command=get_tables)
+button1.grid(row=0,column=2, rowspan= 4,  sticky= "nsew")
 
 button2 = tk.Button(text="show nothing", bg="#262626", fg="white", font=("Arial", 12), command=delete_tables)
 button2.grid(row=3,column=1, sticky= "nsew")
