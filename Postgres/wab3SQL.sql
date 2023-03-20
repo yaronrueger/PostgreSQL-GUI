@@ -90,3 +90,5 @@ INSERT INTO tkey_device(id_androidID, ds_model, ds_msisdn, ds_imei, ds_btMac, dy
 ('androidID1', 'model1', 'msisdn1', 'imei1', 'btmac1', true, 1, 'ip1', 'schirmbox1'),
 ('androidID2', 'model2', 'msisdn2', 'imei2', 'btmac2', false, 2, 'ip2', 'schirmbox2'),
 ('androidID3', 'model3', 'msisdn3', 'imei3', 'btmac3', true, 3, 'ip3', 'schirmbox3');
+
+--SELECT * FROM tkey_location INNER JOIN tkey_rack ON tkey_location.id_city=tkey_rack.fi_location;
