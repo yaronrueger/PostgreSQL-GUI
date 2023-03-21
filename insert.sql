@@ -17,3 +17,5 @@ INSERT INTO tkey_server VALUES (
 INSERT INTO tkey_schirmbox VALUES (
     ("SM TA3 BOX1","","UPDATE_ME")
     )
+
+    INSERT INTO 

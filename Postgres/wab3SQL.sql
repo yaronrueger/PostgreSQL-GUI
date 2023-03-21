@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS tkey_device;
+DROP TABLE IF EXISTS tkey_bluetoothDongle;
 DROP TABLE IF EXISTS tkey_heRack;
 DROP TABLE IF EXISTS tkey_schirmbox;
 DROP TABLE IF EXISTS tkey_server;
@@ -44,7 +45,7 @@ CREATE TABLE tkey_heRack(
 
 CREATE TABLE tkey_bluetoothDongle(
         id_btmac TEXT PRIMARY KEY,
-        ds_usbPort TEXT PRIMARY KEY,
+        ds_usbPort TEXT,
         fi_schirmboxName TEXT REFERENCES tkey_schirmbox(id_schirmboxName)
 );
 
@@ -93,8 +94,8 @@ INSERT INTO tkey_heRack(id_id,dn_he, fi_ipAddress, fi_schirmboxName, fi_rack) VA
 
 INSERT INTO tkey_bluetoothDongle VALUES 
 ('1','2','schirmbox1'),
-('1','4','schirmbox1'),
-('1','6','schirmbox1');
+('2','4','schirmbox1'),
+('3','6','schirmbox1');
 
 INSERT INTO tkey_device(id_androidID, ds_model, ds_msisdn, ds_imei, ds_btMac, dy_batteryProj, dn_usbPort, fi_dongle, fi_ipAddress, fi_schirmboxName) VALUES
 ('androidID1', 'model1', 'msisdn1', 'imei1', 'btmac1', 'true', '1','1', 'ip1', 'schirmbox1'),
