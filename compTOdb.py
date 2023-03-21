@@ -8,6 +8,7 @@ import psycopg2
 import math
 import pandas as pd
 
+
 eFile = pd.read_excel("dbE.xlsx")
 print(eFile)
 
@@ -27,4 +28,10 @@ insert_schirmbox="INSERT INTO tkey_schirmbox VALUES (%s, %s, %s)"
 insert_heRack="INSERT INTO tkey_heRack VALUES (%s, %s, %s, %s, %s)"
 insert_device="INSERT INTO tkey_device VALUES (%s,%s, %s,%s, %s,%s, %s,%s, %s)"
 
+columnsName=["Acroname Hub ID Hex", "", ""]
 print(eFile.head(1))
+print(len(eFile.head()))
+print(eFile["Android ID"][0])
+
+#INSERT INTO tkey_location VALUES ("Nuernberg", "Germany", "Georg_Elser_Straße H002")
+#INSERT INTO tkey_rack VALUES ("UPDATE_ME","Nuernberg")

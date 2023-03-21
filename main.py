@@ -102,7 +102,6 @@ def get_oneTable(name):
 
     button5 = tk.Button(text="add", bg="#262626", fg="green", font=("Arial", 12), command=add_data)
     button5.grid(row=7,column=2,  sticky= "nsew")
-    
 
 def delete_tables():
     global label1
