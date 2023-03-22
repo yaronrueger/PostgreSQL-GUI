@@ -62,15 +62,13 @@ CREATE TABLE tkey_device(
         fi_schirmboxName TEXT REFERENCES tkey_schirmbox(id_schirmboxName)
 );
 
-INSERT INTO tkey_location VALUES (
-    ('Nuernberg', 'Germany', 'Georg_Elser_Straße H002')
-    );
+INSERT INTO tkey_location VALUES
+    ('Nuernberg', 'Germany', 'Georg_Elser_Straße H002');
 
-INSERT INTO tkey_rack VALUES (
-    ('UPDATE_ME','Nuernberg')
-    );
+INSERT INTO tkey_rack VALUES
+    ('UPDATE_ME','Nuernberg');
 
-INSERT INTO  tkey_usbHub VALUES (
+INSERT INTO  tkey_usbHub VALUES 
     ('D6E2948D','UPDATE_ME'),
     ('D3E79188','UPDATE_ME'),
     ('0E3F4950','UPDATE_ME'),
@@ -78,23 +76,19 @@ INSERT INTO  tkey_usbHub VALUES (
     ('D5364759','UPDATE_ME'),
     ('5952243D','UPDATE_ME'),
     ('CE2D5C42','UPDATE_ME'),
-    ('CE2D5C42','UPDATE_ME'),
     ('9E7D0C12','UPDATE_ME'),
-    ('4ABECFD1','UPDATE_ME'),
     ('01196F76','UPDATE_ME'),
-    ('4ABECFD1','UPDATE_ME')
-    );
+    ('4ABECFD1','UPDATE_ME');
 
-INSERT INTO tkey_server VALUES (
+INSERT INTO tkey_server VALUES
     ('10.213.125.245', 'mg-nyge-sm-1', 'LAB', 'UPDATE_ME'),
     ('10.213.125.247','mg-nyge-sm-2', 'LAB', 'UPDATE_ME'),
     ('10.213.125.252','mg-nyge-test','LAB','UPDATE_ME'),
     ('10.213.125.248','mg-nyge-live-2','LIVE','UPDATE_ME'),
     ('10.213.125.251','mg-nyge-ref','LAB','UPDATE_ME'),
-    ('10.34.35.180','mg-nyge-1','LAB','UPDATE_ME')
-    );
+    ('10.34.35.180','mg-nyge-1','LAB','UPDATE_ME');
 
-INSERT INTO tkey_schirmbox VALUES (
+INSERT INTO tkey_schirmbox VALUES
     ('SM TA3 BOX1','UPDATE_ME'),
     ('SM TA3 BOX2','UPDATE_ME'),
     ('SM TA4 BOX1','UPDATE_ME'),
@@ -109,19 +103,17 @@ INSERT INTO tkey_schirmbox VALUES (
     ('NYGE-Ref-BIG','UPDATE_ME'),
     ('NYYGE-REF-SMALL oben rechts','UPDATE_ME'),
     ('H009 links','UPDATE_ME'),
-    ('H009 rechts','UPDATE_ME')
-    );
+    ('H009 rechts','UPDATE_ME');
 
 --heRack für Server [x.1] und  Schirmbox[x.2]
-INSERT INTO tkey_heRack(id_id, dn_he,fi_ipAddress,fi_rack) VALUES (
+INSERT INTO tkey_heRack(id_id, dn_he,fi_ipAddress,fi_rack) VALUES
     ('1.1','UPDATE_ME','10.213.125.245','UPDATE_ME'),
     ('2.1','UPDATE_ME','10.213.125.247','UPDATE_ME'),
     ('3.1','UPDATE_ME','10.213.125.252','UPDATE_ME'),
     ('4.1','UPDATE_ME','10.213.125.248','UPDATE_ME'),
     ('5.1','UPDATE_ME','10.213.125.251','UPDATE_ME'),
-    ('6.1','UPDATE_ME','10.34.35.180','UPDATE_ME')
-);
-INSERT INTO tkey_heRack(id_id, dn_he,fi_schirmboxName,fi_rack) VALUES (
+    ('6.1','UPDATE_ME','10.34.35.180','UPDATE_ME');
+INSERT INTO tkey_heRack(id_id, dn_he,fi_schirmboxName,fi_rack) VALUES
     ('1.2','UPDATE_ME','SM TA3 BOX1','UPDATE_ME'),
     ('2.2','UPDATE_ME','SM TA3 BOX2','UPDATE_ME'),
     ('3.2','UPDATE_ME','SM TA4 BOX1','UPDATE_ME'),
@@ -136,13 +128,12 @@ INSERT INTO tkey_heRack(id_id, dn_he,fi_schirmboxName,fi_rack) VALUES (
     ('12.2','UPDATE_ME','NYGE-Ref-BIG','UPDATE_ME'),
     ('13.2','UPDATE_ME','NYYGE-REF-SMALL oben rechts','UPDATE_ME'),
     ('14.2','UPDATE_ME','H009 links','UPDATE_ME'),
-    ('15.2','UPDATE_ME','H009 rechts','UPDATE_ME')
-);
+    ('15.2','UPDATE_ME','H009 rechts','UPDATE_ME');
 
-INSERT INTO tkey_bluetoothDongle VALUES (
+INSERT INTO tkey_bluetoothDongle VALUES
     ('B6:E3:14:06:03:02','2','SM TA3 BOX1'),
     ('B6:E3:14:06:03:04','4','SM TA3 BOX1'),
-    ('BE:E3:14:06:03:06'.'6','SM TA3 BOX1'),
+    ('BE:E3:14:06:03:06','6','SM TA3 BOX1'),
     ('BE:E3:14:06:03:08','8','SM TA3 BOX1'),
     ('BE:E3:14:06:03:10','10','SM TA3 BOX1'),
     ('BE:E3:14:06:03:12','12','SM TA3 BOX1'),
@@ -177,15 +168,15 @@ INSERT INTO tkey_bluetoothDongle VALUES (
     ('00:1A:7D:DA:71:14','-','Kiste 2 auf dem Rack'),
     ('00:1A:7D:DA:71:24','-','Kiste 2 auf dem Rack'),
     ('74:13:49:7E:FD:28','2','NYGE-Test-BIG'),
-    ('CB:4C:E8:4E:FD:43 ','4','NYGE-Test-BIG'),
-    ('4B:D7:4B:E0:46:B8 ','6','NYGE-Test-BIG'),
+    ('CB:4C:E8:4E:FD:43','4','NYGE-Test-BIG'),
+    ('4B:D7:4B:E0:46:B8','6','NYGE-Test-BIG'),
     ('AC:1B:D8:5D:62:B1','8','NYGE-Test-BIG'),
     ('34:7B:1B:BE:7E:2B','10','NYGE-Test-BIG'),
     ('AF:8F:5F:3C:01:12','12','NYGE-Test-BIG'),
-    ('4A:20:A4:51:A3:8D ','-','Out 1'),
-    ('66:AA:EA:0B:D7:09','-','Out 2'),
-    ('FD:E3:DE:65:92:BD','-','Out 4'),
-    ('7D:56:42:C5:EC:F3','-','Out 6'),
+    ('4A:20:A4:51:A3:8D','-','OUT 1'),
+    ('66:AA:EA:0B:D7:09','-','OUT 2'),
+    ('FD:E3:DE:65:92:BD','-','OUT 4'),
+    ('7D:56:42:C5:EC:F3','-','OUT 6'),
     ('93:EB:32:C0:02:02','2','NYGE-Test-BIG2'),
     ('93:EB:32:C0:02:04','4','NYGE-Test-BIG2'),
     ('74:9E:F5:53:57:48','6','NYGE-Ref-BIG'),
@@ -203,10 +194,9 @@ INSERT INTO tkey_bluetoothDongle VALUES (
     ('00:1A:7D:DA:71:06','-','H009 links'),
     ('00:1A:7D:DA:71:11','-','H009 rechts'),
     ('93:EB:32:C0:02:06','6','NYGE-Test-BIG2'),
-    ('93:EB:32:C0:02:08','8','NYGE-Test-BIG2')
-);
+    ('93:EB:32:C0:02:08','8','NYGE-Test-BIG2');
 
-INSERT INTO tkey_device VALUES (
+INSERT INTO tkey_device VALUES
     ('R3CR904K4ZT','S21','4915159716901', '350517924691347','F0:F5:64:70:93:DD', 'False', '1','B6:E3:14:06:03:02','10.213.125.245', 'SM TA3 BOX1'),
     ('R3CR9032NZT','S21','4915159716902','350517924599524','F0:F5:64:6E:C2:9F','False','1','B6:E3:14:06:03:04','10.213.125.245','SM TA3 BOX1'),
     ('R3CR9032R5H','S21','4915159716903','350517924600249','F0:F5:64:6E:C3:2F','False','3','BE:E3:14:06:03:06','10.213.125.245','SM TA3 BOX1'),
@@ -249,12 +239,12 @@ INSERT INTO tkey_device VALUES (
     ('R3CRA0WZD5T','S21','4915159716951','350517927863455','F0:F5:64:B2:9D:47','False','7','AC:1B:D8:5D:62:B1','10.213.125.252','NYGE-Test-BIG'),
     ('R3CRA010X0F','S21','4915159716952','350517926152496','F0:F5:64:90:4B:B9','False','9','34:7B:1B:BE:7E:2B','10.213.125.252','NYGE-Test-BIG'),
     ('R3CRA0WZ8GK','S21','48602039847','-','F0:F5:64:B2:9C:13','False','11','AF:8F:5F:3C:01:12','10.213.125.252','NYGE-Test-BIG'),
-    ('R5CR604K74T','S21','4915159715842',,'352859307665839','F0:39:65:08:63:D4','False','-','4A:20:A4:51:A3:8D','10.213.125.252','Out 1'),
-    ('R38MB0BXBPB','S10','4915159715845',,'353697110401045','74:9E:F5:53:5B:3E','False','-','66:AA:EA:0B:D7:09','10.213.125.252','Out 2'),
-    ('R38MB0BXLDE','S10','4915159715841',,'353697110403918','74:9E:F5:53:5D:7C','False','-','FD:E3:DE:65:92:BD','10.213.125.252','Out 4'),
-    ('R38MB0BX0NY','S10','4915159715843',,'353697110397409','74:9E:F5:53:58:66','False','-','7D:56:42:C5:EC:F3','10.213.125.252','Out 6'),
-    ('R5CR604HCMZ','S21','4915159715846',,'-','F0:39:65:08:54:3C','False','1','93:EB:32:C0:02:02','10.213.125.252','NYGE-Test-BIG2'),
-    ('R5CR604HD3D','S21','4915159715847',,'-','F0:39:65:08:54:5A','False','3','93:EB:32:C0:02:04','10.213.125.252','NYGE-Test-BIG2'),
+    ('R5CR604K74T','S21','4915159715842','352859307665839','F0:39:65:08:63:D4','False','-','4A:20:A4:51:A3:8D','10.213.125.252','OUT 1'),
+    ('R38MB0BXBPB','S10','4915159715845','353697110401045','74:9E:F5:53:5B:3E','False','-','66:AA:EA:0B:D7:09','10.213.125.252','OUT 2'),
+    ('R38MB0BXLDE','S10','4915159715841','353697110403918','74:9E:F5:53:5D:7C','False','-','FD:E3:DE:65:92:BD','10.213.125.252','OUT 4'),
+    ('R38MB0BX0NY','S10','4915159715843','353697110397409','74:9E:F5:53:58:66','False','-','7D:56:42:C5:EC:F3','10.213.125.252','OUT 6'),
+    ('R5CR604HCMZ','S21','4915159715846','-','F0:39:65:08:54:3C','False','1','93:EB:32:C0:02:02','10.213.125.252','NYGE-Test-BIG2'),
+    ('R5CR604HD3D','S21','4915159715847','-','F0:39:65:08:54:5A','False','3','93:EB:32:C0:02:04','10.213.125.252','NYGE-Test-BIG2'),
     ('R38MB0BWWBY','S10','491715934998','353697110395973','74:9E:F5:53:57:48','False','5','74:9E:F5:53:57:48','10.213.125.251','NYGE-Ref-BIG'),
     ('R38MB0BWWYH','S10','491715934999','353697110396179','74:9E:F5:53:57:70','False','-','74:9E:F5:53:57:70','10.213.125.251','NYGE-Ref-BIG'),
     ('R38MB0BXCWN','S10','491715935000','353697110401433','74:9E:F5:53:5B:8C','False','-','74:9E:F5:53:5B:8C','10.213.125.251','NYYGE-REF-SMALL oben rechts'),
@@ -270,6 +260,5 @@ INSERT INTO tkey_device VALUES (
     ('2c9423922d057ece','S9','4915159712393','354663105429200','C0:BD:C8:30:BE:06','False','-','00:1A:7D:DA:71:06','10.34.35.180','H009 links'),
     ('R38MA0L43NR','S10','4915159714462','354622109752397','74:9E:F5:30:AF:3E','True','-','00:1A:7D:DA:71:11','10.34.35.180','H009 rechts'),
     ('RF8N51EJ7ME','S20','4915159714935','-','B4:1A:1D:1D:18:2A','True','5','93:EB:32:C0:02:06','10.213.125.252','NYGE-Test-BIG2'),
-    ('RF8N328WENY','S20','4915159714936','-','80:7B:3E:38:5D:74','True','7','93:EB:32:C0:02:08','10.213.125.252','NYGE-Test-BIG2')
-);
+    ('RF8N328WENY','S20','4915159714936','-','80:7B:3E:38:5D:74','True','7','93:EB:32:C0:02:08','10.213.125.252','NYGE-Test-BIG2');
 --SELECT * FROM tkey_location INNER JOIN tkey_rack ON tkey_location.id_city=tkey_rack.fi_location;

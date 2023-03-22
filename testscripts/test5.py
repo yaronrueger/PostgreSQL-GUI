@@ -15,8 +15,7 @@ conn = psycopg2.connect(database="wab3_db", user="postgres", password="R00t1", h
 cur = conn.cursor()
 
 
-cur.execute("""SELECT table_name FROM information_schema.tables
-       WHERE table_schema = 'public'""")
+cur.execute("""SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'""")
 tables = cur.fetchall()
 for table in tables:
     print(table)
@@ -25,8 +24,8 @@ zahl = len(tables)
 cur.execute("Select * FROM "+ tables[0][0] +" LIMIT 0")
 print(cur.description)
 columns = cur.description
-for i in range(len(columns)):
-    print(columns[i][0])
+#for i in range(len(columns)):
+    #print(columns[i][0])
 #columns = cur.fetchall()
 #print(columns)
 #print(len(tables))
@@ -46,11 +45,11 @@ def cell_edited(event):
 columnsList = []
 for i in range(len(columns)):
     columnsList.append(columns[i][0])
-sheet = tksheet.Sheet(window, data=newdata)
-sheet.grid(row=0, column=0)
-sheet.enable_bindings(("single_select", "row_select", "column_width_resize","arrowkeys","right_click_popup_menu","rc_select", "rc_insert_row","rc_delete_row", "copy", "cut", "paste", "delete","undo","edit_cell"))
-sheet.extra_bindings([("end_edit_cell", cell_edited)])
-sheet.headers(columnsList)
+#sheet = tksheet.Sheet(window, data=newdata)
+#sheet.grid(row=0, column=0)
+#sheet.enable_bindings(("single_select", "row_select", "column_width_resize","arrowkeys","right_click_popup_menu","rc_select", "rc_insert_row","rc_delete_row", "copy", "cut", "paste", "delete","undo","edit_cell"))
+#sheet.extra_bindings([("end_edit_cell", cell_edited)])
+#sheet.headers(columnsList)
 
 
 
@@ -60,6 +59,10 @@ sheet.headers(columnsList)
 
 #cur.execute("INSERT INTO tkey_location VALUES " + newdata[0][0])
 # Close the database connection when the program exits
+
+enter = tk.Entry(window)
+enter.grid(row=0, column=0)
+print(enter.get())
 
 window.mainloop()
 cur.close()
