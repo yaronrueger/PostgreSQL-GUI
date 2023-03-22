@@ -3,7 +3,6 @@ _author_ = "Yaron Rueger"
 _email_ = "yaron.rueger@telekom.de"
 _maintainer_ = "Yaron Rueger"
 
-
 ########################################################################
 #TODO:
 #   [0] add button to save changes
@@ -32,25 +31,6 @@ import psycopg2
 import tksheet
 import math
 
-window = tk.Tk()
-#space between buttons and tables
-window.grid_rowconfigure(2, minsize=30)
-window.title("WAB3_DB")
-window.config(padx=50, pady=50)
-window.config(bg="#2d2d2d")
-window.geometry("1000x800+300+300")
-for i in range(10):
-    window.grid_columnconfigure(i, weight=1)
-window.grid_rowconfigure(5, weight=1)
-#first sheet
-sheetFirst=tksheet.Sheet(window)
-sheetFirst.enable_bindings(("single_select", "row_select", "column_width_resize","arrowkeys","right_click_popup_menu","rc_select", "rc_insert_row","rc_delete_row", "copy", "cut", "paste", "delete","undo","edit_cell"))
-sheetFirst.grid(row=4, column=0,rowspan=20,columnspan=9, sticky="nsew")
-
-# Connect to the PostgreSQL database
-conn = psycopg2.connect(database="wab3_db", user="postgres",password="R00t1", host="localhost", port="5432")
-cur = conn.cursor()
-
 tables=[]
 sheets = []
 buttons = []
@@ -61,13 +41,6 @@ button3=None
 button5 =None
 dataChanged = False
 dataChangedAdd = False
-
-#creates list of table names
-cur.execute("""SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'""")
-tableNames = cur.fetchall()
-tablesLength = len(tableNames)
-for i in range(tablesLength):
-    tables.append(tableNames[i][0])
 
 
 def get_oneTable(name):
@@ -109,11 +82,23 @@ def get_oneTable(name):
 
 def cell_editedOne(event):
     global dataChanged
+    
     changedData = event[3]
     columnsName = sheets[-1].get_sheet_data(return_copy = False, get_header = True, get_index = False)[event[1]]
-    idName = sheets[-1].get_sheet_data(return_copy = False, get_header = True, get_index = False)[0]
-    idWert = sheets[-1].get_cell_data(event[0], 0, return_copy = True)
-    cur.execute("UPDATE " + tkeyName + " SET " + columnsName + " = " + "'"+changedData +"'"+ " WHERE " + idName + " = " + "'"+idWert+"'")
+    #check if data is a foreign key
+    if "fi_" in columnsName:
+        try:
+            idName = sheets[-1].get_sheet_data(return_copy = False, get_header = True, get_index = False)[0]
+            idWert = sheets[-1].get_cell_data(event[0], 0, return_copy = True)
+            cur.execute("UPDATE " + tkeyName + " SET " + columnsName + " = " + "'"+changedData +"'"+ " WHERE " + idName + " = " + "'"+idWert+"'")
+        except(Exception, psycopg2.Error) as error:
+            messagebox.showwarning("ACHTUNG", message=("Fehler beim speichern der änderung:", error))
+            print("There is no right primary key(Maybe add at first a primary key or change the foreign key)")
+            #data has to change back or database will break
+    else:
+        idName = sheets[-1].get_sheet_data(return_copy = False, get_header = True, get_index = False)[0]
+        idWert = sheets[-1].get_cell_data(event[0], 0, return_copy = True)
+        cur.execute("UPDATE " + tkeyName + " SET " + columnsName + " = " + "'"+changedData +"'"+ " WHERE " + idName + " = " + "'"+idWert+"'")
     dataChanged = True
 
 
@@ -162,9 +147,24 @@ def save_data():
 def commitAdd(events):
     global tkeyName
     values = []
-    for i in range(len(events)):
-        values.append(events[i].get())
-    cur.execute("INSERT INTO "+ tkeyName + " VALUES (%s)",values)    
+    print(range(len(events)))
+    if(range(len(events))!= 0):
+        for i in range(len(events)):
+            values.append(events[i].get())
+        stringSQL = "INSERT INTO "
+        stringSQL += tkeyName
+        stringSQL += " VALUES ("
+        for i in values:
+            stringSQL += "'"
+            stringSQL += i
+            stringSQL += "'"
+            stringSQL += ","
+        stringSQL = stringSQL[:-1]
+        stringSQL += ")"
+        print(stringSQL)
+        cur.execute(stringSQL)
+        save_data() 
+        get_oneTable(tkeyName)
 
 
 def add_data():
@@ -177,7 +177,7 @@ def add_data():
     addWindow.title("adding Data")
     addWindow.config(padx=50, pady=50)
     addWindow.config(bg="#2d2d2d")
-    addWindow.geometry("500x100")
+    #addWindow.geometry("500x100")
     tableLable = tk.Label(addWindow, text=tkeyName)
     tableLable.grid(row=0, column=0, sticky="nsew")
     #columnnames
@@ -199,11 +199,37 @@ def add_data():
     addWindow.mainloop()
 
 
+window = tk.Tk()
+#space between buttons and tables
+window.grid_rowconfigure(2, minsize=30)
+window.title("WAB3_DB")
+window.config(padx=50, pady=50)
+window.config(bg="#2d2d2d")
+window.geometry("1000x800+300+300")
+for i in range(10):
+    window.grid_columnconfigure(i, weight=1)
+window.grid_rowconfigure(5, weight=1)
+#first sheet
+sheetFirst=tksheet.Sheet(window)
+sheetFirst.enable_bindings(("single_select", "row_select", "column_width_resize","arrowkeys","right_click_popup_menu","rc_select", "rc_insert_row","rc_delete_row", "copy", "cut", "paste", "delete","undo","edit_cell"))
+sheetFirst.grid(row=4, column=0,rowspan=20,columnspan=9, sticky="nsew")
+
+# Connect to the PostgreSQL database
+conn = psycopg2.connect(database="wab3_db", user="postgres",password="R00t1", host="localhost", port="5432")
+cur = conn.cursor()
+
+#creates list of table names
+cur.execute("""SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'""")
+tableNames = cur.fetchall()
+tablesLength = len(tableNames)
+for i in range(tablesLength):
+    tables.append(tableNames[i][0])
+
 ############################BUTTONS############################
-button4 = tk.Button(text="search", bg="#262626", fg="white", font=("Arial", 12), command=search_data)
-button4.grid(row=0,column=4,rowspan=2,  sticky= "nsew")
-button2 = tk.Button(text="show nothing", bg="#262626", fg="white", font=("Arial", 12), command=delete_tables)
-button2.grid(row=0,column=5, rowspan= 2,  sticky= "nsew")
+buttonSearch = tk.Button(text="search", bg="#262626", fg="white", font=("Arial", 12), command=search_data)
+buttonSearch.grid(row=0,column=4,rowspan=2,  sticky= "nsew")
+buttonDelete = tk.Button(text="show nothing", bg="#262626", fg="white", font=("Arial", 12), command=delete_tables)
+buttonDelete.grid(row=0,column=5, rowspan= 2,  sticky= "nsew")
 #Tablebuttons
 for i in tables:
     button = tk.Button(text=i, bg="#262626", fg="white", font=("Arial", 12), command=lambda n=i: get_oneTable(n))
