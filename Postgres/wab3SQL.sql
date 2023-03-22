@@ -15,38 +15,38 @@ CREATE TABLE tkey_location(
 
 CREATE TABLE tkey_rack(
         id_number TEXT PRIMARY KEY,
-        fi_location TEXT REFERENCES tkey_location(id_city)
+        fi_location TEXT REFERENCES tkey_location(id_city) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE tkey_usbHub(
         id_id TEXT PRIMARY KEY,
-        fi_rackNumber TEXT REFERENCES tkey_rack(id_number)
+        fi_rackNumber TEXT REFERENCES tkey_rack(id_number) ON UPDATE CASCADE ON DELETE CASCADE
 );
         
 CREATE TABLE tkey_server(
         id_ipAddress TEXT PRIMARY KEY,
         ds_name TEXT,
         ds_labOrTest TEXT,
-        fi_rackNumber TEXT REFERENCES tkey_rack(id_number)
+        fi_rackNumber TEXT REFERENCES tkey_rack(id_number) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE tkey_schirmbox(
         id_schirmboxName TEXT PRIMARY KEY,
-        fi_rackNumber TEXT REFERENCES tkey_rack(id_number)
+        fi_rackNumber TEXT REFERENCES tkey_rack(id_number) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE tkey_heRack(
         id_id TEXT PRIMARY KEY,
         dn_he TEXT,
-        fi_ipAddress TEXT REFERENCES tkey_server(id_ipAddress),
-        fi_schirmboxName TEXT REFERENCES tkey_schirmbox(id_schirmboxName),
-        fi_rack TEXT REFERENCES tkey_rack(id_number)
+        fi_ipAddress TEXT REFERENCES tkey_server(id_ipAddress) ON UPDATE CASCADE ON DELETE CASCADE,
+        fi_schirmboxName TEXT REFERENCES tkey_schirmbox(id_schirmboxName) ON UPDATE CASCADE ON DELETE CASCADE,
+        fi_rack TEXT REFERENCES tkey_rack(id_number) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE tkey_bluetoothDongle(
         id_btmac TEXT PRIMARY KEY,
         ds_usbPort TEXT,
-        fi_schirmboxName TEXT REFERENCES tkey_schirmbox(id_schirmboxName)
+        fi_schirmboxName TEXT REFERENCES tkey_schirmbox(id_schirmboxName) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE tkey_device(
@@ -57,9 +57,9 @@ CREATE TABLE tkey_device(
         ds_btMac TEXT,
         dy_batteryProj TEXT,
         dn_usbPort TEXT,
-        fi_dongle TEXT REFERENCES tkey_bluetoothDongle(id_btmac),
-        fi_ipAddress TEXT REFERENCES tkey_server(id_ipAddress),
-        fi_schirmboxName TEXT REFERENCES tkey_schirmbox(id_schirmboxName)
+        fi_dongle TEXT REFERENCES tkey_bluetoothDongle(id_btmac) ON UPDATE CASCADE ON DELETE CASCADE,
+        fi_ipAddress TEXT REFERENCES tkey_server(id_ipAddress) ON UPDATE CASCADE ON DELETE CASCADE,
+        fi_schirmboxName TEXT REFERENCES tkey_schirmbox(id_schirmboxName) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 INSERT INTO tkey_location VALUES
