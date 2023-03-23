@@ -1,3 +1,13 @@
+DROP TABLE IF EXISTS Standort_to_Virtuelle_Maschine;
+DROP TABLE IF EXISTS Standort;
+DROP TABLE IF EXISTS Virtuelle_Maschine;
+DROP TABLE IF EXISTS Version;
+DROP TABLE IF EXISTS Sicherheitsluecke;
+DROP TABLE IF EXISTS Change_to_Tag;
+DROP TABLE IF EXISTS Change;
+DROP TABLE IF EXISTS Tag;
+DROP TABLE IF EXISTS Typ;
+
 DROP TABLE IF EXISTS tkey_device;
 DROP TABLE IF EXISTS tkey_bluetoothDongle;
 DROP TABLE IF EXISTS tkey_heRack;

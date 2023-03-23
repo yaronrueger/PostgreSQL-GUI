@@ -17,11 +17,13 @@ _maintainer_ = "Yaron Rueger"
 #       -->[]onclosing ()
 #       -->[]deleteData()
 #   [x] change size of table
-#   [0] darkmode
+#   [0] darkmode 
+#   [0] strings extra for cur.execute()
 #   [x] add real data
 #   [] clean code
 #       -->[0]add comments 
-#   []dropdown menu for fi data
+#   []dropdown menu for fi data 
+#   [] dataChangedAdd
 ########################################################################
 
 import tkinter as tk
@@ -39,6 +41,7 @@ tkeyName = None
 label1= None
 button3=None
 button5 =None
+addWindow = None
 dataChanged = False
 dataChangedAdd = False
 
@@ -82,7 +85,7 @@ def get_oneTable(name):
 
 def cell_editedOne(event):
     global dataChanged
-    
+    old_value = sheets[-1].get_cell_data(event[0], event[1])
     changedData = event[3]
     columnsName = sheets[-1].get_sheet_data(return_copy = False, get_header = True, get_index = False)[event[1]]
     #check if data is a foreign key
@@ -91,15 +94,16 @@ def cell_editedOne(event):
             idName = sheets[-1].get_sheet_data(return_copy = False, get_header = True, get_index = False)[0]
             idWert = sheets[-1].get_cell_data(event[0], 0, return_copy = True)
             cur.execute("UPDATE " + tkeyName + " SET " + columnsName + " = " + "'"+changedData +"'"+ " WHERE " + idName + " = " + "'"+idWert+"'")
-        except(Exception, psycopg2.Error) as error:
-            messagebox.showwarning("ACHTUNG", message=("Fehler beim speichern der änderung:", error))
-            print("There is no right primary key(Maybe add at first a primary key or change the foreign key)")
-            #data has to change back or database will break
+            dataChanged = True
+        except(Exception, psycopg2.Error):
+            messagebox.showwarning("ACHTUNG", message=("Es gibt keinen passenden Primary Key"))
+            dataChanged = False
+        #data has to change back or database will break
     else:
         idName = sheets[-1].get_sheet_data(return_copy = False, get_header = True, get_index = False)[0]
         idWert = sheets[-1].get_cell_data(event[0], 0, return_copy = True)
         cur.execute("UPDATE " + tkeyName + " SET " + columnsName + " = " + "'"+changedData +"'"+ " WHERE " + idName + " = " + "'"+idWert+"'")
-    dataChanged = True
+        dataChanged = True
 
 
 def delete_tables():
@@ -135,7 +139,12 @@ def on_closing():
 
 def on_closing2():
     global dataChangedAdd
-    print("In Arbeit")
+    global addWindow
+    if dataChangedAdd:
+        if messagebox.askokcancel("Beenden", "Möchten Sie das Programm wirklich beenden? Es gibt noch uncommittete Änderungen!"):
+            addWindow.destroy()
+    else:
+        addWindow.destroy()
 
 
 def save_data():
@@ -165,11 +174,14 @@ def commitAdd(events):
         cur.execute(stringSQL)
         save_data() 
         get_oneTable(tkeyName)
+        for i in range(len(events)):
+            events[i].delete(0, END)
 
 
 def add_data():
     global tkeyName
     global entryList
+    global addWindow
     columnNames = []
     columnLabels=[]
     values = None
@@ -195,8 +207,12 @@ def add_data():
     buttonCommit = tk.Button(addWindow, text="commit", bg="#262626", fg="white", font=("Arial", 12),command=lambda n = entryList: commitAdd(n))
     buttonCommit.grid(row=0,column=1, sticky="nsew")
     #warning message
-    #window.protocol("WM_DELETE_WINDOW", on_closing2)
+    window.protocol("WM_DELETE_WINDOW", on_closing2)
     addWindow.mainloop()
+
+
+def delete_data():
+    print("in Arbeit")
 
 
 window = tk.Tk()
