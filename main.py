@@ -13,8 +13,8 @@ _maintainer_ = "Yaron Rueger"
 #   [0] Functions 
 #       -->[x]saveData()
 #       -->[]searchData ()
-#       -->[]addData ()
-#       -->[]onclosing ()
+#       -->[x]addData ()
+#       -->[x]onclosing ()
 #       -->[]deleteData()
 #   [x] change size of table
 #   [0] darkmode 
@@ -23,7 +23,8 @@ _maintainer_ = "Yaron Rueger"
 #   [] clean code
 #       -->[0]add comments 
 #   []dropdown menu for fi data 
-#   [] dataChangedAdd
+#   [] dataChangedAdd 
+#   [] class for window
 ########################################################################
 
 import tkinter as tk
@@ -44,6 +45,12 @@ button5 =None
 addWindow = None
 dataChanged = False
 dataChangedAdd = False
+
+
+class Window():
+    def __init__(self, title, root):
+        self.title = title
+        self.root = root
 
 
 def get_oneTable(name):
@@ -207,7 +214,7 @@ def add_data():
     buttonCommit = tk.Button(addWindow, text="commit", bg="#262626", fg="white", font=("Arial", 12),command=lambda n = entryList: commitAdd(n))
     buttonCommit.grid(row=0,column=1, sticky="nsew")
     #warning message
-    window.protocol("WM_DELETE_WINDOW", on_closing2)
+    #window.protocol("WM_DELETE_WINDOW", on_closing2)
     addWindow.mainloop()
 
 
