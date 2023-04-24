@@ -19,7 +19,7 @@
       <data key="d6">
         <y:ShapeNode>
           <y:Geometry height="264.23999999999995" width="207.91999999999985" x="946.04" y="153.34445234400013"/>
-          <y:Fill color="#FFCC00" transparent="false"/>
+          <y:Fill color="#CCFFCC" transparent="false"/>
           <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
           <y:NodeLabel alignment="left" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="180.4140625" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="136.556640625" x="35.681679687500036" xml:space="preserve" y="41.912968749999976">//tkey_device
 [
@@ -43,7 +43,7 @@
       <data key="d6">
         <y:ShapeNode>
           <y:Geometry height="264.23999999999995" width="207.91999999999985" x="1156.04" y="153.34445234400013"/>
-          <y:Fill color="#FFCC00" transparent="false"/>
+          <y:Fill color="#CCFFCC" transparent="false"/>
           <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
           <y:NodeLabel alignment="left" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="121.609375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="149.93359375" x="28.993203125000036" xml:space="preserve" y="71.31531249999998">//tkey_rack
 [
@@ -63,7 +63,7 @@ location: '', hoeheneinheit: ''
       <data key="d6">
         <y:ShapeNode>
           <y:Geometry height="264.23999999999995" width="207.91999999999985" x="1051.04" y="422.03335703200037"/>
-          <y:Fill color="#FFCC00" transparent="false"/>
+          <y:Fill color="#CCFFCC" transparent="false"/>
           <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
           <y:NodeLabel alignment="left" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="121.609375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="173.921875" x="16.999062500000036" xml:space="preserve" y="71.3153125">//tkey_schirmbox
 [
@@ -83,7 +83,7 @@ rackNumber: '', hoeheneinheit: ''
       <data key="d6">
         <y:ShapeNode>
           <y:Geometry height="264.23999999999995" width="207.91999999999985" x="1366.0400000000002" y="153.34445234400016"/>
-          <y:Fill color="#FFCC00" transparent="false"/>
+          <y:Fill color="#CCFFCC" transparent="false"/>
           <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
           <y:NodeLabel alignment="left" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="136.310546875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="171.9296875" x="17.99515624999981" xml:space="preserve" y="63.96472656249995">//tkey_server
 [
@@ -104,7 +104,7 @@ racknumber: '', hoeheneinheit: ''
       <data key="d6">
         <y:ShapeNode>
           <y:Geometry height="264.23999999999995" width="207.91999999999985" x="1261.0400000000002" y="422.0333570320004"/>
-          <y:Fill color="#FFCC00" transparent="false"/>
+          <y:Fill color="#CCFFCC" transparent="false"/>
           <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
           <y:NodeLabel alignment="left" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="121.609375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="108.548828125" x="49.68558593749981" xml:space="preserve" y="71.31531249999995">//tkey_usbhub
 [
@@ -123,7 +123,7 @@ racknumber: ''
       <data key="d6">
         <y:ShapeNode>
           <y:Geometry height="264.23999999999995" width="207.91999999999985" x="1576.0400000000002" y="153.3444523440001"/>
-          <y:Fill color="#FFCC00" transparent="false"/>
+          <y:Fill color="#CCFFCC" transparent="false"/>
           <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
           <y:NodeLabel alignment="left" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="121.609375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="159.220703125" x="24.34964843749981" xml:space="preserve" y="71.31531249999995">//tkey_bleuttothdongle
 [
@@ -143,7 +143,7 @@ usbPort: '', schirmboxname: ''
       <data key="d6">
         <y:ShapeNode>
           <y:Geometry height="264.23999999999995" width="207.91999999999985" x="1471.0400000000002" y="422.03335703200037"/>
-          <y:Fill color="#FFCC00" transparent="false"/>
+          <y:Fill color="#CCFFCC" transparent="false"/>
           <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
           <y:NodeLabel alignment="left" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="121.609375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="113.88671875" x="47.01664062499981" xml:space="preserve" y="71.3153125">//tkey_location
 [
