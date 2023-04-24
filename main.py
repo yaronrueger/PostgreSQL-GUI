@@ -81,6 +81,7 @@ def get_oneTable(name):
     sheets[-1].enable_bindings(("single_select", "row_select", "column_width_resize","arrowkeys","right_click_popup_menu","rc_select", "rc_insert_row","rc_delete_row", "copy", "cut", "paste", "delete","undo","edit_cell"))
     sheets[-1].grid(row=4,column=0, rowspan=20, columnspan=9, sticky="nsew")
     sheets[-1].headers(columns)
+    sheets[-1].change_theme("dark blue")
     sheets[-1].extra_bindings([("end_edit_cell", cell_editedOne)])
     #add commit-button
     button3 = tk.Button(text="commit", bg="#262626", fg="white", font=("Arial", 12), command=save_data)
@@ -196,6 +197,7 @@ def add_data():
     addWindow.title("adding Data")
     addWindow.config(padx=50, pady=50)
     addWindow.config(bg="#2d2d2d")
+    
     #addWindow.geometry("500x100")
     tableLable = tk.Label(addWindow, text=tkeyName)
     tableLable.grid(row=0, column=0, sticky="nsew")
@@ -213,6 +215,7 @@ def add_data():
     #button  to commit
     buttonCommit = tk.Button(addWindow, text="commit", bg="#262626", fg="white", font=("Arial", 12),command=lambda n = entryList: commitAdd(n))
     buttonCommit.grid(row=0,column=1, sticky="nsew")
+    #entryList.config({"background":"Black"})
     #warning message
     #window.protocol("WM_DELETE_WINDOW", on_closing2)
     addWindow.mainloop()
@@ -234,11 +237,13 @@ for i in range(10):
 window.grid_rowconfigure(5, weight=1)
 #first sheet
 sheetFirst=tksheet.Sheet(window)
+sheetFirst.change_theme("dark blue")
 sheetFirst.enable_bindings(("single_select", "row_select", "column_width_resize","arrowkeys","right_click_popup_menu","rc_select", "rc_insert_row","rc_delete_row", "copy", "cut", "paste", "delete","undo","edit_cell"))
 sheetFirst.grid(row=4, column=0,rowspan=20,columnspan=9, sticky="nsew")
 
 # Connect to the PostgreSQL database
-conn = psycopg2.connect(database="wab3_db", user="postgres",password="R00t1", host="localhost", port="5432")
+conn = psycopg2.connect(database="postgres", user="postgres",password="R00t1", host="localhost", port="5432")
+#conn = psycopg2.connect(database="postgres", user="postgres",password="1234", host="80.158.79.67", port="5432")
 cur = conn.cursor()
 
 #creates list of table names
