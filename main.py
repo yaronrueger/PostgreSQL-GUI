@@ -1,32 +1,3 @@
-_version_ = "1.0"
-_author_ = "Yaron Rueger"
-_email_ = "yaron.rueger@telekom.de"
-_maintainer_ = "Yaron Rueger"
-
-########################################################################
-#TODO:
-#   [0] add button to save changes
-#   [x] get the tableNames from the database
-#   [x] get the columnsnames from the database
-#   [x] add warnings
-#       -->[x]closing with changes but no commiting
-#   [0] Functions 
-#       -->[x]saveData()
-#       -->[]searchData ()
-#       -->[x]addData ()
-#       -->[x]onclosing ()
-#       -->[]deleteData()
-#   [x] change size of table
-#   [0] darkmode 
-#   [0] strings extra for cur.execute()
-#   [x] add real data
-#   [] clean code
-#       -->[0]add comments 
-#   []dropdown menu for fi data 
-#   [] dataChangedAdd 
-#   [] class for window
-########################################################################
-
 import tkinter as tk
 from tkinter import *
 from tkinter import messagebox
@@ -51,7 +22,6 @@ class Window():
     def __init__(self, title, root):
         self.title = title
         self.root = root
-
 
 def get_oneTable(name):
     columns=[]
@@ -90,7 +60,6 @@ def get_oneTable(name):
     button5 = tk.Button(text="add", bg="#262626", fg="green", font=("Arial", 12), command=add_data)
     button5.grid(row=3,column=2,  sticky= "nsew")
 
-
 def cell_editedOne(event):
     global dataChanged
     old_value = sheets[-1].get_cell_data(event[0], event[1])
@@ -113,7 +82,6 @@ def cell_editedOne(event):
         cur.execute("UPDATE " + tkeyName + " SET " + columnsName + " = " + "'"+changedData +"'"+ " WHERE " + idName + " = " + "'"+idWert+"'")
         dataChanged = True
 
-
 def delete_tables():
     global label1
     global button3
@@ -127,10 +95,8 @@ def delete_tables():
         if(button5!= None):
             button5.grid_forget()
 
-
 def search_data():
     print("In Arbeit")
-
 
 def on_closing():
     global dataChanged
@@ -144,7 +110,6 @@ def on_closing():
         cur.close()
         conn.close()
 
-
 def on_closing2():
     global dataChangedAdd
     global addWindow
@@ -154,12 +119,10 @@ def on_closing2():
     else:
         addWindow.destroy()
 
-
 def save_data():
     global dataChanged
     conn.commit()
     dataChanged = False
-
 
 def commitAdd(events):
     global tkeyName
@@ -184,7 +147,6 @@ def commitAdd(events):
         get_oneTable(tkeyName)
         for i in range(len(events)):
             events[i].delete(0, END)
-
 
 def add_data():
     global tkeyName
@@ -220,10 +182,8 @@ def add_data():
     #window.protocol("WM_DELETE_WINDOW", on_closing2)
     addWindow.mainloop()
 
-
 def delete_data():
     print("in Arbeit")
-
 
 window = tk.Tk()
 #space between buttons and tables

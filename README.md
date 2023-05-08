@@ -1,29 +1,7 @@
-## Getting Started
+## Database GUI
 
-Database with GUI support
+This Python program creates a GUI for a PostgreSQL database. This is a pre-release version that is not yet equipped with all functions. It will be updated in a short time.
 
 ## Folder Structure
 
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
-
-
-----------------------------------------------------------------------
-Datenbank + UI ersetzen mit Exelsheets
--> wissenschaftliche Frage: Kosten Nutzen Analyse? 
-
-FNT Command <- nicht, ist eher eine Projektarbeit 
--> Merge the two topics
-
-yEd <- Graphic Editor for WAB
--> editing all graphics amd saving them into this repos.
+You only have to execute the main.py file. Note that you have to install the imports beforehand via pip.
