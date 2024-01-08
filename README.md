@@ -18,7 +18,7 @@ Dieses Svelte-Projekt konzentriert sich auf die Select_Tabelle.svelte-Datei, die
 ### Verwendung
 1. Führen Sie npm run dev aus, um den Entwicklungsserver zu starten. 
 2. Öffnen Sie Ihren Browser und navigieren Sie zu http://localhost:5000.
-3.API-Aufrufe und erwartete Ausgabe In diesem Projekt werden die folgenden API-Aufrufe verwendet:
+3. API-Aufrufe und erwartete Ausgabe In diesem Projekt werden die folgenden API-Aufrufe verwendet:
 - getTables: Gibt ein Array von Tabellennamen zurück.
     - Beispiel-Ausgabe: ["tabelle1", "tabelle2", "tabelle3", ...]
 - getTableStructure: Gibt ein Array von Spaltennamen für die ausgewählte Tabelle zurück.
